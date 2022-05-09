@@ -6,6 +6,7 @@ import io.pleaze.sample.player.domain.Player.PlayerName;
 import io.pleaze.sample.player.domain.PlayerTeam;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.stereotype.Component;
 
 public record RegisterPlayerCommand(
     @Getter PlayerId playerId,

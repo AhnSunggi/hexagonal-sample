@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/team")
-class RegisterTeamController {
+public class RegisterTeamController {
 
   private final RegisterTeamUseCase registerTeamUseCase;
 
