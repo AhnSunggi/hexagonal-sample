@@ -1,0 +1,79 @@
+buildscript {
+	ext {
+		queryDslVersion = "5.0.0"
+		lombokVersion = "1.18.24"
+		guavaVersion = "31.1-jre"
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.6.7'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10" /*QueryDsl*/
+	id 'java'
+}
+
+group = 'io.pleaze'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	/* springBoot */
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	/* lombok */
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+	/* h2 */
+	runtimeOnly 'com.h2database:h2'
+	/* queryDsl */
+//	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+//	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+	/* guava */
+	implementation "com.google.guava:guava:${guavaVersion}"
+
+	/* springBootTest */
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+/*queryDsl setting start*/
+//def querydslDir = "$buildDir/generated/querydsl"
+//
+//querydsl {
+//	jpa = true
+//	querydslSourcesDir = querydslDir
+//}
+//
+//sourceSets {
+//	main.java.srcDir querydslDir
+//}
+//
+//configurations {
+//	compileOnly {
+//		extendsFrom annotationProcessor
+//	}
+//	querydsl.extendsFrom compileClasspath
+//}
+//
+//compileQuerydsl {
+//	options.annotationProcessorPath = configurations.querydsl
+//}
+/*queryDsl setting end*/
